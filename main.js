@@ -69,13 +69,16 @@ function onResponseChange() {
 }
 
 function lockInResponse() {
+  let time = new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"}).split(',')[1];
+  console.log("date is: ", new Date().toISOString().split('T')[1])
+  console.log("seconds date is: ", new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"}).split(',')[1]);
     document.getElementById("response").disabled = true;
     document.getElementById("lock_in_button").disabled = true;
     document.getElementById("next_question").disabled = false;
     document.getElementById("done").disabled = false;
     let q_num = getCookie("q_num");
     let r_num = "Q" + q_num;
-    let r_value = document.getElementById("response").value;
+    let r_value = document.getElementById("response").value + " " + time;
     storeCookie(r_num, r_value, 2);
 }
 
@@ -91,6 +94,30 @@ function nextQuestion() {
     storeCookie("q_num", q_num, 2);
 }
 
-function finishQuiz() {
+function download(file, text) {
 
+  //creating an invisible element
+
+  let element = document.createElement('a');
+  element.setAttribute('href',
+      'data:text/plain;charset=utf-8, '
+      + encodeURIComponent(text));
+  element.setAttribute('download', file);
+  document.body.appendChild(element);
+  element.click();
+
+  document.body.removeChild(element);
+}
+
+function finishQuiz() {
+  let q_num = parseInt(getCookie("q_num"));
+  let name = getCookie("user_name");
+  let answers = name + "\n";
+  for (let i = 1; i <= q_num; i++) {
+    let response = getCookie("Q"+i);
+    answers += "Q" + i + ":" + response + "\n"
+  }
+  console.log("answers: ", answers);
+  let filename = name+"_answers.txt";
+  download(filename, answers);
 }

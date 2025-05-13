@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>WDDSI Gathering</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script type="text/javascript" src="main.js"></script>
+<body onload="checkCookie()">
+    <h1>WDDSI Trivia Game</h1>
+    <label for="user_name">Please give your name (or nickname):</label>
+    <input type="text" id="user_name" name="user_name" onchange="onNameChange()">
+    <br><br>
+    <p>After filling out your name, click the button below to start the trivia collection program</p>
+    <button id="start_button" disabled="true" onclick="location.href = 'collection_page.html'">Start</button>
+    <br><br>
+    <p>
+        <a href="about.html">About</a>
+    </p>
+</body>
+</html>

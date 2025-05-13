@@ -1,0 +1,96 @@
+"use strict";
+function onNameChange() {
+    console.log(document.getElementById("user_name").value);
+    if (document.getElementById("user_name").value !== "") {
+        document.getElementById("start_button").disabled = false
+    } else {
+        document.getElementById("start_button").disabled = true
+    }
+    storeCookie("user_name", document.getElementById("user_name").value, 2)
+}
+
+function storeCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toUTCString();
+    console.log("cname, cvalue, and exdays: ", cname, cvalue, exdays);
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    localStorage.setItem(cname,cvalue)
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  console.log("decoded cookie: ", decodedCookie);
+  let local_return = localStorage.getItem(cname);
+  console.log("local_return:", local_return);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  if (local_return !== null && local_return.length !== 0) {
+    return local_return;
+  }
+  return "";
+}
+
+function checkCookie() {
+  let user_name = getCookie("user_name");
+  if (user_name.length !== 0) {
+    document.getElementById("start_button").disabled = false;
+  }
+  document.getElementById("user_name").value = user_name;
+}
+
+function checkQuestionNumber() {
+  let q_num = getCookie("q_num");
+  console.log("q_num is: ", q_num);
+  if (!q_num){
+    console.log("is false right now")
+    q_num = 1;
+    storeCookie("q_num", 1, 2);
+  }
+  document.getElementById("question_header").innerHTML = "Question Number " + q_num;
+}
+
+function onResponseChange() {
+    if (document.getElementById("response").value !== "") {
+        document.getElementById("lock_in_button").disabled = false;
+    } else {
+        document.getElementById("lock_in_button").disabled = true;
+    }
+    // storeCookie("response", document.getElementById("response").value, 2)
+}
+
+function lockInResponse() {
+    document.getElementById("response").disabled = true;
+    document.getElementById("lock_in_button").disabled = true;
+    document.getElementById("next_question").disabled = false;
+    document.getElementById("done").disabled = false;
+    let q_num = getCookie("q_num");
+    let r_num = "Q" + q_num;
+    let r_value = document.getElementById("response").value;
+    storeCookie(r_num, r_value, 2);
+}
+
+function nextQuestion() {
+    document.getElementById("response").disabled = false;
+    document.getElementById("response").value = "";
+    document.getElementById("lock_in_button").disabled = true;
+    document.getElementById("next_question").disabled = true;
+    document.getElementById("done").disabled = true;
+    let q_num = parseInt(getCookie("q_num"));
+    q_num += 1;
+    document.getElementById("question_header").innerHTML = "Question Number " + q_num;
+    storeCookie("q_num", q_num, 2);
+}
+
+function finishQuiz() {
+
+}

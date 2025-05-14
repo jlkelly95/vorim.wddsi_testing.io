@@ -5,27 +5,13 @@
     <title>WDDSI About</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<script>
-    function changeColor() {
-        var col = document.getElementById("body");
-        var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++ ) {
-            color += letters[Math.round(Math.random() * 15)];
-        }
-        col.style.backgroundColor = color;
-    }
-    function resetColor() {
-        var col = document.getElementById("body");
-        col.style.backgroundColor = '#FFFFFF'
-    }
-</script>
-<body id="body">
+<script type="text/javascript" src="about.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<body class="body" id="body" onload="checkBackgroundColor()">
     <h1>This is the about page</h1>
     <p>Here's a button you can click to randomly change the background color</p>
-    <button onclick="changeColor()">Random Color</button>
-    <button onclick="resetColor()">Reset to white</button>
-    <script src="main.js"></script>
+    <button onclick="changeBackgroundColor()">Random Color</button>
+    <button onclick="resetBackgroundColor()">Reset to white</button>
     <p>
         <a href="index.html">Main</a>
     </p>

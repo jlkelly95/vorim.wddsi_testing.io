@@ -5,18 +5,21 @@
     <title>WDDSI Gathering</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<script type="text/javascript" src="about.js"></script>
 <script type="text/javascript" src="main.js"></script>
-<body onload="checkQuestionNumber()">
+<body onload="checkQuestionNumber(), checkBackgroundColor()" class="body" id="body">
     <h1 id="question_header"></h1>
+    <form class="response-form">
     <label for="response">Please give your name response:</label>
     <input type="text" id="response" name="response" onchange="onResponseChange()">
     <br><br>
     <button id="lock_in_button" onclick="lockInResponse()">Lock In Answer</button>
     <button id="next_question" disabled="true" onclick="nextQuestion()">Next Question</button>
-    <button id="done" disabled="true" onclick="finishQuiz()">Finish Quiz</button>
+    <button id="done" onclick="finishQuiz()">Finish Quiz</button>
+    </form>
     <br><br>
     <p>
-        <a href="index.html">Main Page</a>
+        <a href="index.html" onClick="resetCookies()">Reset to Main Page</a>
     </p>
 </body>
 </html>

@@ -12,3 +12,16 @@
     cursor: pointer;
     border-radius: 4px;
 }
+
+.body {
+    text-align: center;
+    margin: 100px;
+}
+
+.question-page {
+    text-align: center;
+}
+
+#question_header {
+    margin: 100px;
+}

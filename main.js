@@ -110,6 +110,23 @@ function lockInResponse() {
   storeCookie(r_num, r_value, 2);
 }
 
+function creepyBog() {
+  // determine if bog face appears 0-10 roll
+  let bog_chance = Math.floor(Math.random() * 101);
+  if (bog_chance >= 85) {
+    console.log("bog will appear now", bog_chance);
+    document.getElementById("creepybog").src = "CREEPYBOG.jpg";
+    // document.getElementById("bogsound").muted = 'false';
+    // document.getElementById("bogsound").play();
+    let audio = new Audio('./ena_pico_park_scream.mp3');
+    audio.play();
+  } else {
+    console.log("bog will not appear: ", bog_chance);
+    document.getElementById("creepybog").src = "";
+    // document.getElementById("bogsound").src = "";
+  }
+}
+
 function nextQuestion() {
   document.getElementById("response").disabled = false;
   document.getElementById("response").value = "";
@@ -120,6 +137,7 @@ function nextQuestion() {
   q_num += 1;
   document.getElementById("question_header").innerHTML = "Question Number " + q_num;
   storeCookie("q_num", q_num, 2);
+  creepyBog()
 }
 
 function download(file, text) {
@@ -161,4 +179,15 @@ function finishQuiz() {
   let filename = name + "_answers.txt";
   download(filename, answers);
   // sendEmail(filename, answers);
+}
+
+function calculateResults() {
+    let q_num = parseInt(getCookie("q_num"));
+    let name = getCookie("user_name");
+    let correct_answers = 0;
+    let wrong_answers = 0;
+    let total_answers = 0;
+    $.get('answer_sheet.txt', function(data) {
+        console.log(data);
+    }, 'text');
 }

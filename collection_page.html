@@ -5,21 +5,36 @@
     <title>WDDSI Gathering</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="about.js"></script>
 <script type="text/javascript" src="main.js"></script>
-<body onload="checkQuestionNumber(), checkBackgroundColor()" class="body" id="body">
-    <h1 id="question_header"></h1>
-    <form class="response-form">
-    <label for="response">Please give your name response:</label>
-    <input type="text" id="response" name="response" onchange="onResponseChange()">
-    <br><br>
-    <button id="lock_in_button" onclick="lockInResponse()">Lock In Answer</button>
-    <button id="next_question" disabled="true" onclick="nextQuestion()">Next Question</button>
-    <button id="done" onclick="finishQuiz()">Finish Quiz</button>
-    </form>
-    <br><br>
-    <p>
+<body onload="checkQuestionNumber(); checkBackgroundColor();" class="body" id="body">
+    <div>
+        <h1 id="question_header"></h1>
+        <form class="response-form">
+            <div class="response-div">
+                <label for="response">Please give your response:
+                    <input type="text" id="response" name="response" onchange="onResponseChange()">
+                </label>
+            </div>
+            <br><br>
+            <button id="lock_in_button" onclick="lockInResponse()">Lock In Answer</button>
+            <button id="next_question" disabled="true" onclick="nextQuestion()">Next Question</button>
+        </form>
+        <br><br>
+        <!-- <button id="calculate_results" onclick="calculateResults()">Calculate Results</button> -->
+        <button id="calculate_results" onclick="document.location = 'results.html'">Calculate Results</button>
+
+        
+    </div>
+    <img id="creepybog" src="">
+    <iframe src="" allow="autoplay" style="display:none">
+    </iframe>
+    <audio autoplay id="playAudio">
+        <source src="">
+    </audio>
+    <div id="footer">
         <a href="index.html" onClick="resetCookies()">Reset to Main Page</a>
-    </p>
+    </div>
 </body>
 </html>

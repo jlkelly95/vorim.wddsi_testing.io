@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>WDDSI Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="results.js"></script>
+<body onload="calculateResults(); checkBackgroundColor();" class="body" id="body">
+    <div>
+        <h1 id="results-header"></h1>
+        <form class="results-form">
+            <div class="results-div">
+                <p id="results">Your results: </p>
+            </div>
+            <br><br>
+            <button id="done" onclick="finishQuiz()">Print Results</button>
+        </form>
+        <br><br>
+        
+    </div>
+    <div id="footer">
+        <p class="question-page">
+            <a href="index.html" onClick="resetCookies()">Reset to Main Page</a>
+        </p>
+    </div>
+</body>
+</html>

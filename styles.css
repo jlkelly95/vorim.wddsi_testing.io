@@ -25,3 +25,18 @@
 #question_header {
     margin: 100px;
 }
+
+.response-div {
+    border: solid 1px black;
+    margin: auto;
+    padding: 10px;
+    max-width: 300px;
+}
+
+#footer {
+    position: fixed;
+    bottom: 10%;
+    /* top: 50%; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

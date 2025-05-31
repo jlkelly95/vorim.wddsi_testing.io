@@ -106,7 +106,7 @@ function calculateResults() {
     }
     $.get('answer_sheet.txt', function(data) {
         console.log(data);
-        const answers = data.split("\r\n");
+        const answers = data.split("\n");
         total_answers = answers.length;
         console.log("answers are: ", answers);
         console.log("responses were: ", responses);

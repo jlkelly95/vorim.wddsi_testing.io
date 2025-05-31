@@ -72,7 +72,7 @@ function resetCookies() {
   // Sets all cookies to expired (requires new entries)
   let allCookies = document.cookie.split(';');
   for (let i = 0; i < allCookies.length; i++) {
-    document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+    document.cookie = allCookies[i] + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
   // restores the user_name and background color from temp variable
   storeCookie("user_name", name, 2);

@@ -100,6 +100,7 @@ function calculateResults() {
     for (let i = 1; i <= q_num; i++) {
         let response = getCookie("Q" + i);
         if (response) {
+            // console.log("response at 0?: ", response[0]);
             responses.push(response.split(' ')[0]);
         }
     }
@@ -107,8 +108,8 @@ function calculateResults() {
         console.log(data);
         const answers = data.split("\r\n");
         total_answers = answers.length;
-        console.log("answers are: ", answers);
-        console.log("responses were: ", responses);
+        // console.log("answers are: ", answers);
+        // console.log("responses were: ", responses);
         for (let i = 0; i < answers.length; i++) {
             const answer = answers[i];
             if (i >= responses.length) {
@@ -122,9 +123,9 @@ function calculateResults() {
                 }
             }
         }
-        console.log("correct: ", correct_answers);
-        console.log("wrong: ", wrong_answers);
-        console.log("total: ", total_answers);
+        // console.log("correct: ", correct_answers);
+        // console.log("wrong: ", wrong_answers);
+        // console.log("total: ", total_answers);
         document.getElementById("results").innerHTML = "Your Results: " + correct_answers + '/' + total_answers;
     }, 'text');
 }
